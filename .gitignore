@@ -1,3 +1,6 @@
+/src/main/resources/META-INF
+/target
+
 # Compiled class file
 *.class
 
