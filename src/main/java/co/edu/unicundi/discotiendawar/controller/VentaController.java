@@ -19,7 +19,6 @@ public class VentaController {
     
     @EJB
     private IVentaService service;
-    private IAlbumService service2;
     
     @GET
     @Path("/listarPago")
@@ -32,8 +31,8 @@ public class VentaController {
     @GET
     @Path("/listarCatalogo")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response listarAlbumes(){
-        List<Album> lista = this.service2.listar();
+    public Response listarCatalogo(){
+        List<Album> lista = this.service.listarCatalogo();
         return Response.status(Response.Status.OK).entity(lista).build();
     }
 }
