@@ -1,8 +1,7 @@
 package co.edu.unicundi.discotiendawar.controller;
 
 import co.edu.unicundi.discotiendajar.dto.CancionDto;
-import co.edu.unicundi.discotiendajar.entity.Cancion;
-import co.edu.unicundi.discotiendajar.entity.Formato;
+import co.edu.unicundi.discotiendajar.entity.*;
 import co.edu.unicundi.discotiendajar.exception.ResourceIllegalArgumentException;
 import co.edu.unicundi.discotiendajar.service.ICancionService;
 import java.util.List;

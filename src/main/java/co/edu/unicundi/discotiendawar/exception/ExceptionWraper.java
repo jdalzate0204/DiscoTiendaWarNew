@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.edu.unicundi.discotiendawar.exception;
 
 import java.io.Serializable;
 import java.util.Date;
-
 
 /**
 *
@@ -20,78 +14,54 @@ public class ExceptionWraper implements Serializable {
     private String mensaje;
     private String url;
 
-
-
     public ExceptionWraper() {
     }
 
     public ExceptionWraper(Integer codigo, String error, String mensaje, String url) {
-    this.codigo = codigo;
-    this.error = error;
-    this.fecha = new Date().toString();
-    this.mensaje = mensaje;
-    this.url = url;
+        this.codigo = codigo;
+        this.error = error;
+        this.fecha = new Date().toString();
+        this.mensaje = mensaje;
+        this.url = url;
     }
-
-
 
     public Integer getCodigo() {
-    return codigo;
+        return codigo;  
     }
-
-
 
     public void setCodigo(Integer codigo) {
-    this.codigo = codigo;
+        this.codigo = codigo;
     }
-
-
 
     public String getError() {
-    return error;
+        return error;
     }
-
-
 
     public void setError(String error) {
-    this.error = error;
+        this.error = error;
     }
-
-
 
     public String getFecha() {
-    return fecha;
+        return fecha;
     }
-
-
 
     public void setFecha(String fecha) {
-    this.fecha = fecha;
+        this.fecha = fecha;
     }
-
-
 
     public String getMensaje() {
-    return mensaje;
+        return mensaje;
     }
-
-
 
     public void setMensaje(String mensaje) {
-    this.mensaje = mensaje;
+        this.mensaje = mensaje;
     }
-
-
 
     public String getUrl() {
-    return url;
+        return url;
     }
-
-
 
     public void setUrl(String url) {
-    this.url = url;
+        this.url = url;
     }
-
-
 }

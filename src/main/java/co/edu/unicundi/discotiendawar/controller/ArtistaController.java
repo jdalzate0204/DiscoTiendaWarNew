@@ -1,9 +1,7 @@
 package co.edu.unicundi.discotiendawar.controller;
 
 import co.edu.unicundi.discotiendajar.dto.ArtistaDto;
-import co.edu.unicundi.discotiendajar.entity.Artista;
-import co.edu.unicundi.discotiendajar.entity.GeneroMusical;
-import co.edu.unicundi.discotiendajar.entity.Sexo;
+import co.edu.unicundi.discotiendajar.entity.*;
 import co.edu.unicundi.discotiendajar.exception.ResourceIllegalArgumentException;
 import co.edu.unicundi.discotiendajar.service.IArtistaService;
 import java.util.List;

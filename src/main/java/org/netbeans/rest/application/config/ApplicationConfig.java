@@ -28,7 +28,7 @@ public class ApplicationConfig extends Application {
     }
 
     private void addRestResourceClasses(Set<Class<?>> resources) {
-        resources.add(co.edu.unicundi.discotiendawar.controller.AdministradorCotroller.class);
+        resources.add(co.edu.unicundi.discotiendawar.controller.AdministradorController.class);
         resources.add(co.edu.unicundi.discotiendawar.controller.AlbumController.class);
         resources.add(co.edu.unicundi.discotiendawar.controller.ArtistaController.class);
         resources.add(co.edu.unicundi.discotiendawar.controller.CancionController.class);

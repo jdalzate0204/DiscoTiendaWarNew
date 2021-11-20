@@ -1,8 +1,6 @@
 package co.edu.unicundi.discotiendawar.exception;
 
-import co.edu.unicundi.discotiendajar.exception.NoAutorizationException;
-import co.edu.unicundi.discotiendajar.exception.ResourceIllegalArgumentException;
-import co.edu.unicundi.discotiendajar.exception.ResourceNotFoundException;
+import co.edu.unicundi.discotiendajar.exception.*;
 import javax.ws.rs.core.*;
 import javax.ws.rs.ext.*;
 
@@ -48,7 +46,7 @@ public class ExceptionHandler implements ExceptionMapper<Exception> {
             return Response.status(Response.Status.NOT_FOUND).entity(ew).build();  
             
         }
-        else {
+        else { //500
             ew = new ExceptionWraper(Response.Status.INTERNAL_SERVER_ERROR.getStatusCode(), 
                                       Response.Status.INTERNAL_SERVER_ERROR.getReasonPhrase(), 
                                       "", 
