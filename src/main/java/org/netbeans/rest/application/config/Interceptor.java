@@ -1,5 +1,6 @@
 package org.netbeans.rest.application.config;
 
+import co.edu.unicundi.discotiendajar.exception.NoAutorizationException;
 import co.edu.unicundi.discotiendajar.service.IAdministradorService;
 import io.jsonwebtoken.*;
 import java.io.IOException;
@@ -21,12 +22,12 @@ public class Interceptor implements ContainerRequestFilter{
     private IAdministradorService service;
     
     @Override
-    public void filter(ContainerRequestContext requestContext) throws IOException {
+    public void filter(ContainerRequestContext requestContext) throws IOException{
         System.out.println("Entro al filtro");
         String url =  requestContext.getUriInfo().getAbsolutePath().toString();
         System.out.println(url);
         
-        if (url.contains("/auth/login") || (url.contains("/albumes/listar"))) {
+        if (url.contains("/auth/login") || (url.contains("/ventas/listarCatalogo"))||(url.contains("/ventas/listarPago"))) {
             return;
         }
         
@@ -37,7 +38,9 @@ public class Interceptor implements ContainerRequestFilter{
         if (token == null) {
             requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED)
                     .entity("TOKEN INVALIDO").build());
-            return;
+            return  ;
+            
+            
         } else {
             String key = "E1BuRy$EHyw";
 
