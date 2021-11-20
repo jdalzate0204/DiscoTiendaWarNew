@@ -1,6 +1,8 @@
 package co.edu.unicundi.discotiendawar.exception;
 
+import co.edu.unicundi.discotiendajar.exception.NoAutorizationException;
 import co.edu.unicundi.discotiendajar.exception.ResourceIllegalArgumentException;
+import co.edu.unicundi.discotiendajar.exception.ResourceNotFoundException;
 import javax.ws.rs.core.*;
 import javax.ws.rs.ext.*;
 
@@ -31,7 +33,22 @@ public class ExceptionHandler implements ExceptionMapper<Exception> {
                                       uriInfo.getPath());
             return Response.status(Response.Status.CONFLICT).entity(ew).build();  
             
-        } else {
+        } if (e instanceof NoAutorizationException ) { //401
+            ew = new ExceptionWraper(Response.Status.UNAUTHORIZED.getStatusCode(), 
+                                      Response.Status.UNAUTHORIZED.getReasonPhrase(), 
+                                      e.getMessage(), 
+                                      uriInfo.getPath());
+            return Response.status(Response.Status.UNAUTHORIZED).entity(ew).build();  
+            
+        }  if (e instanceof ResourceNotFoundException ) { //404
+            ew = new ExceptionWraper(Response.Status.NOT_FOUND.getStatusCode(), 
+                                      Response.Status.NOT_FOUND.getReasonPhrase(), 
+                                      e.getMessage(), 
+                                      uriInfo.getPath());
+            return Response.status(Response.Status.NOT_FOUND).entity(ew).build();  
+            
+        }
+        else {
             ew = new ExceptionWraper(Response.Status.INTERNAL_SERVER_ERROR.getStatusCode(), 
                                       Response.Status.INTERNAL_SERVER_ERROR.getReasonPhrase(), 
                                       "", 
