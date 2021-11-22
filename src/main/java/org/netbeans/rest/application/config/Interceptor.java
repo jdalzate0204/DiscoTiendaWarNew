@@ -1,6 +1,5 @@
 package org.netbeans.rest.application.config;
 
-import co.edu.unicundi.discotiendajar.exception.NoAutorizationException;
 import co.edu.unicundi.discotiendajar.service.IAdministradorService;
 import io.jsonwebtoken.*;
 import java.io.IOException;
@@ -27,7 +26,13 @@ public class Interceptor implements ContainerRequestFilter{
         String url =  requestContext.getUriInfo().getAbsolutePath().toString();
         System.out.println(url);
         
-        if (url.contains("/auth/login") || (url.contains("/ventas/listarCatalogo"))||(url.contains("/ventas/listarPago"))) {
+        if (url.contains("/auth/login") 
+                || (url.contains("/ventas/listarCatalogo"))
+                ||(url.contains("/ventas/listarPago"))
+                ||(url.contains("/albumes/"))
+                ||(url.contains("/artistas/"))
+                ||(url.contains("/canciones/"))
+                ||(url.contains("/auth/cerrarSesion"))) {
             return;
         }
         
@@ -59,13 +64,13 @@ public class Interceptor implements ContainerRequestFilter{
                 int contador = this.service.validarToken(token);
 
                 if (contador == 1) {
-                    if(url.contains("/albumes/") && claims.toString().contains("administrador")) {
+                    if(url.contains("") && claims.toString().contains("administrador")) {
                         return;
-                    } else if (url.contains("/artistas/") && claims.toString().contains("administrador")) {
+                    } else if (url.contains("") && claims.toString().contains("administrador")) {
                         return;
-                    } else if (url.contains("/canciones/") && claims.toString().contains("administrador")) {
+                    } else if (url.contains("") && claims.toString().contains("administrador")) {
                         return;
-                    } else if (url.contains("/auth/cerrarSesion") && claims.toString().contains("administrador")){
+                    } else if (url.contains("") && claims.toString().contains("administrador")){
                         return;
                     } else {
                         //abortamos la peticion
