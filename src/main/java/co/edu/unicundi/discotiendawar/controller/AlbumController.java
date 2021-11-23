@@ -43,7 +43,7 @@ public class AlbumController {
         List<Album> lista = this.service.listarSelect();
         return Response.status(Response.Status.OK).entity(lista).build();
     }
-    @POST
+    @PUT
     @Path("/editar")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response editar(AlbumDto obj)throws ResourceIllegalArgumentException, CloneNotSupportedException {

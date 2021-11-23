@@ -59,7 +59,7 @@ public class ArtistaController {
         return Response.status(Response.Status.OK).entity(lista).build();
     }
     
-    @POST
+    @PUT
     @Path("/editar")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response editar(ArtistaDto obj)throws ResourceIllegalArgumentException, CloneNotSupportedException {

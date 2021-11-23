@@ -52,7 +52,7 @@ public class CancionController {
         List<Cancion> lista = this.service.listarId(id);
         return Response.status(Response.Status.OK).entity(lista).build();
     }
-    @POST
+    @PUT
     @Path("/editar")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response editar(CancionDto obj)throws ResourceIllegalArgumentException, CloneNotSupportedException {
