@@ -3,6 +3,7 @@ package co.edu.unicundi.discotiendawar.controller;
 import co.edu.unicundi.discotiendajar.dto.AlbumDto;
 import co.edu.unicundi.discotiendajar.entity.Album;
 import co.edu.unicundi.discotiendajar.exception.ResourceIllegalArgumentException;
+import co.edu.unicundi.discotiendajar.exception.ResourceNotFoundException;
 import co.edu.unicundi.discotiendajar.service.IAlbumService;
 import java.util.List;
 import javax.ejb.*;
@@ -50,4 +51,13 @@ public class AlbumController {
        this.service.editar(obj);
        return Response.status(Response.Status.OK).build();
     }
+    
+    @GET
+    @Path("/listarPorId/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response listarId(@PathParam("id")Integer id) throws ResourceNotFoundException {
+        List<Album> album= this.service.listarPorId(id);
+        return Response.status(Response.Status.OK).entity(album).build();
+    }
+    
 }

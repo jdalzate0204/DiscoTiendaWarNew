@@ -3,6 +3,7 @@ package co.edu.unicundi.discotiendawar.controller;
 import co.edu.unicundi.discotiendajar.dto.ArtistaDto;
 import co.edu.unicundi.discotiendajar.entity.*;
 import co.edu.unicundi.discotiendajar.exception.ResourceIllegalArgumentException;
+import co.edu.unicundi.discotiendajar.exception.ResourceNotFoundException;
 import co.edu.unicundi.discotiendajar.service.IArtistaService;
 import java.util.List;
 import javax.ejb.*;
@@ -65,5 +66,13 @@ public class ArtistaController {
     public Response editar(ArtistaDto obj)throws ResourceIllegalArgumentException, CloneNotSupportedException {
        this.service.editar(obj);
        return Response.status(Response.Status.OK).build();
+    }
+    
+    @GET
+    @Path("/listarPorId/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response listarId(@PathParam("id")Integer id) throws ResourceNotFoundException {
+        List<Artista> artista= this.service.listarPorId(id);
+        return Response.status(Response.Status.OK).entity(artista).build();
     }
 }
