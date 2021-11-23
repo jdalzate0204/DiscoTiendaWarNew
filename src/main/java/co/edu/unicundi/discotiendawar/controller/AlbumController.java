@@ -61,7 +61,7 @@ public class AlbumController {
         return Response.status(Response.Status.OK).entity(album).build();
     }
     
-
+    @GET
     @Path("/vista")
     @Produces(MediaType.APPLICATION_JSON)
     public Response vista() {

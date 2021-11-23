@@ -77,6 +77,7 @@ public class ArtistaController {
         return Response.status(Response.Status.OK).entity(artista).build();
     }    
 
+    @GET
     @Path("/vista")
     @Produces(MediaType.APPLICATION_JSON)
     public Response vista() {
