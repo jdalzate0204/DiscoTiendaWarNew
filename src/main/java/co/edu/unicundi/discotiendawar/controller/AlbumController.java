@@ -5,6 +5,7 @@ import co.edu.unicundi.discotiendajar.entity.Album;
 import co.edu.unicundi.discotiendajar.exception.ResourceIllegalArgumentException;
 import co.edu.unicundi.discotiendajar.exception.ResourceNotFoundException;
 import co.edu.unicundi.discotiendajar.service.IAlbumService;
+import co.edu.unicundi.discotiendajar.view.VistaAlbum;
 import java.util.List;
 import javax.ejb.*;
 import javax.ws.rs.*;
@@ -60,4 +61,12 @@ public class AlbumController {
         return Response.status(Response.Status.OK).entity(album).build();
     }
     
+
+    @Path("/vista")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response vista() {
+        List<VistaAlbum> lista = this.service.vista();
+        return Response.status(Response.Status.OK).entity(lista).build();
+    }
+
 }
