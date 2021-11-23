@@ -4,6 +4,7 @@ import co.edu.unicundi.discotiendajar.dto.ArtistaDto;
 import co.edu.unicundi.discotiendajar.entity.*;
 import co.edu.unicundi.discotiendajar.exception.ResourceIllegalArgumentException;
 import co.edu.unicundi.discotiendajar.service.IArtistaService;
+import co.edu.unicundi.discotiendajar.view.VistaArtista;
 import java.util.List;
 import javax.ejb.*;
 import javax.ws.rs.*;
@@ -65,5 +66,13 @@ public class ArtistaController {
     public Response editar(ArtistaDto obj)throws ResourceIllegalArgumentException, CloneNotSupportedException {
        this.service.editar(obj);
        return Response.status(Response.Status.OK).build();
+    }
+    
+    @GET
+    @Path("/vista")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response vista() {
+        List<VistaArtista> lista = this.service.vista();
+        return Response.status(Response.Status.OK).entity(lista).build();
     }
 }

@@ -4,6 +4,7 @@ import co.edu.unicundi.discotiendajar.dto.AlbumDto;
 import co.edu.unicundi.discotiendajar.entity.Album;
 import co.edu.unicundi.discotiendajar.exception.ResourceIllegalArgumentException;
 import co.edu.unicundi.discotiendajar.service.IAlbumService;
+import co.edu.unicundi.discotiendajar.view.VistaAlbum;
 import java.util.List;
 import javax.ejb.*;
 import javax.ws.rs.*;
@@ -49,5 +50,13 @@ public class AlbumController {
     public Response editar(AlbumDto obj)throws ResourceIllegalArgumentException, CloneNotSupportedException {
        this.service.editar(obj);
        return Response.status(Response.Status.OK).build();
+    }
+    
+    @GET
+    @Path("/vista")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response vista() {
+        List<VistaAlbum> lista = this.service.vista();
+        return Response.status(Response.Status.OK).entity(lista).build();
     }
 }
