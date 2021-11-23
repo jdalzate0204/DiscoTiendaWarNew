@@ -62,7 +62,7 @@ public class ArtistaController {
     @POST
     @Path("/editar")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response editar(Artista obj)throws ResourceIllegalArgumentException, CloneNotSupportedException {
+    public Response editar(ArtistaDto obj)throws ResourceIllegalArgumentException, CloneNotSupportedException {
        this.service.editar(obj);
        return Response.status(Response.Status.OK).build();
     }

@@ -55,7 +55,7 @@ public class CancionController {
     @POST
     @Path("/editar")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response editar(Cancion obj)throws CloneNotSupportedException {
+    public Response editar(CancionDto obj)throws ResourceIllegalArgumentException, CloneNotSupportedException {
        this.service.editar(obj);
        return Response.status(Response.Status.OK).build();
     }

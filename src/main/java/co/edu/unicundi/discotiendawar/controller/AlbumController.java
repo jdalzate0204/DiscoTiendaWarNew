@@ -46,7 +46,7 @@ public class AlbumController {
     @POST
     @Path("/editar")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response editar(Album obj)throws ResourceIllegalArgumentException, CloneNotSupportedException {
+    public Response editar(AlbumDto obj)throws ResourceIllegalArgumentException, CloneNotSupportedException {
        this.service.editar(obj);
        return Response.status(Response.Status.OK).build();
     }
