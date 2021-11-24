@@ -1,8 +1,8 @@
 package co.edu.unicundi.discotiendawar.controller;
 
 import co.edu.unicundi.discotiendajar.entity.Album;
+import co.edu.unicundi.discotiendajar.entity.Carrito;
 import co.edu.unicundi.discotiendajar.entity.Pago;
-import co.edu.unicundi.discotiendajar.service.IAlbumService;
 import co.edu.unicundi.discotiendajar.service.IVentaService;
 import java.util.List;
 import javax.ejb.*;
@@ -34,5 +34,13 @@ public class VentaController {
     public Response listarCatalogo(){
         List<Album> lista = this.service.listarCatalogo();
         return Response.status(Response.Status.OK).entity(lista).build();
+    }
+    
+    @POST
+    @Path("/agregarCarrito")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response guardarCarrito(Carrito carrito) {
+        this.service.guardarCarrito(carrito);
+        return Response.status(Response.Status.CREATED).build();
     }
 }
