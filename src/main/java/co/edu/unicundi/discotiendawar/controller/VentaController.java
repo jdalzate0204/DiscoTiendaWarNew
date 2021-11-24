@@ -1,8 +1,10 @@
 package co.edu.unicundi.discotiendawar.controller;
 
+import co.edu.unicundi.discotiendajar.dto.VentaDto;
 import co.edu.unicundi.discotiendajar.entity.Album;
 import co.edu.unicundi.discotiendajar.entity.Carrito;
 import co.edu.unicundi.discotiendajar.entity.Pago;
+import co.edu.unicundi.discotiendajar.exception.ResourceIllegalArgumentException;
 import co.edu.unicundi.discotiendajar.service.IVentaService;
 import java.util.List;
 import javax.ejb.*;
@@ -50,5 +52,13 @@ public class VentaController {
     public Response listarCarrito(){
         List<Carrito> lista = this.service.listarCarrito();
         return Response.status(Response.Status.OK).entity(lista).build();
+    }
+    
+    @POST
+    @Path("/guardarHistorial")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response guardar(VentaDto venta) throws ResourceIllegalArgumentException, CloneNotSupportedException {
+        this.service.guardarHistorial(venta);
+        return Response.status(Response.Status.CREATED).build();
     }
 }
