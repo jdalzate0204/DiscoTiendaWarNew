@@ -45,6 +45,7 @@ public class AlbumController {
         List<Album> lista = this.service.listarSelect();
         return Response.status(Response.Status.OK).entity(lista).build();
     }
+    
     @PUT
     @Path("/editar")
     @Consumes(MediaType.APPLICATION_JSON)
