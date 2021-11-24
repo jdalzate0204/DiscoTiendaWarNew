@@ -61,4 +61,12 @@ public class VentaController {
         this.service.guardarHistorial(venta);
         return Response.status(Response.Status.CREATED).build();
     }
+    
+    @PUT
+    @Path("/editarEstado")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response editarEstado(Boolean estado) {
+        this.service.editar(estado);
+        return Response.status(Response.Status.OK).build();
+    }
 }
