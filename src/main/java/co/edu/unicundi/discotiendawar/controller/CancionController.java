@@ -67,4 +67,12 @@ public class CancionController {
         List<Cancion> cancion= this.service.listarPorId(id);
         return Response.status(Response.Status.OK).entity(cancion).build();
     }
+    
+    @GET
+    @Path("/listarCanciones/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response obtenerCancion(@PathParam("id")Integer id)throws ResourceNotFoundException {
+        List<Cancion> lista = this.service.listarSelect(id);
+        return Response.status(Response.Status.OK).entity(lista).build();
+    }
 }
