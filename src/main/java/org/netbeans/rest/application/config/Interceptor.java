@@ -27,8 +27,7 @@ public class Interceptor implements ContainerRequestFilter{
         System.out.println(url);
         
         if (url.contains("/auth/login") 
-                || (url.contains("/ventas/listarCatalogo"))
-                ||(url.contains("/ventas/listarPago"))
+                || (url.contains("/ventas/"))
                 ||(url.contains("/albumes/"))
                 ||(url.contains("/artistas/"))
                 ||(url.contains("/canciones/"))

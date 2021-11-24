@@ -46,10 +46,10 @@ public class CancionController {
     }
     
     @GET
-    @Path("/listarCancionesPorId/{id}")
+    @Path("/listarPorIdAlbum/{idAlbum}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response listarCancionesId(@PathParam("id")Integer id) throws ResourceNotFoundException{
-        List<Cancion> lista = this.service.listarId(id);
+    public Response listarCancionesId(@PathParam("idAlbum")Integer idAlbum) throws ResourceNotFoundException{
+        List<Cancion> lista = this.service.listarCancionIdAlbum(idAlbum);
         return Response.status(Response.Status.OK).entity(lista).build();
     }
     @PUT
