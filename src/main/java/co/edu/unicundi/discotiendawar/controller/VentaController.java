@@ -43,4 +43,12 @@ public class VentaController {
         this.service.guardarCarrito(carrito);
         return Response.status(Response.Status.CREATED).build();
     }
+    
+    @GET
+    @Path("/listarCarrito")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response listarCarrito(){
+        List<Carrito> lista = this.service.listarCarrito();
+        return Response.status(Response.Status.OK).entity(lista).build();
+    }
 }
