@@ -63,7 +63,7 @@ public class AlbumController {
     }
     
     @GET
-    @Path("/vista")
+    @Path("/listarVista")
     @Produces(MediaType.APPLICATION_JSON)
     public Response vista() {
         List<VistaAlbum> lista = this.service.vista();

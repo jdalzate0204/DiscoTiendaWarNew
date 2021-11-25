@@ -4,6 +4,7 @@ import co.edu.unicundi.discotiendajar.dto.VentaDto;
 import co.edu.unicundi.discotiendajar.entity.Album;
 import co.edu.unicundi.discotiendajar.entity.Carrito;
 import co.edu.unicundi.discotiendajar.entity.Pago;
+import co.edu.unicundi.discotiendajar.entity.Venta;
 import co.edu.unicundi.discotiendajar.exception.ResourceIllegalArgumentException;
 import co.edu.unicundi.discotiendajar.service.IVentaService;
 import java.util.List;
@@ -68,5 +69,21 @@ public class VentaController {
     public Response editarEstado(Boolean estado) {
         this.service.editar(estado);
         return Response.status(Response.Status.OK).build();
+    }
+    
+    @GET
+    @Path("/listarPago/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response listarPagoId(@PathParam("id") Integer id){
+        Pago pago = this.service.listarPagoId(id);
+        return Response.status(Response.Status.OK).entity(pago).build();
+    }
+    
+    @GET
+    @Path("/listarHistorial")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response listarHistorial(){
+        List<Venta> lista = this.service.listarHistorial();
+        return Response.status(Response.Status.OK).entity(lista).build();
     }
 }

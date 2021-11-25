@@ -78,7 +78,7 @@ public class ArtistaController {
     }    
 
     @GET
-    @Path("/vista")
+    @Path("/listarVista")
     @Produces(MediaType.APPLICATION_JSON)
     public Response vista() {
         List<VistaArtista> lista = this.service.vista();
