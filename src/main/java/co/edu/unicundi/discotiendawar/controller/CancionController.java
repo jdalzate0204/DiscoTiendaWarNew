@@ -52,6 +52,7 @@ public class CancionController {
         List<Cancion> lista = this.service.listarCancionIdCatalogo(id);
         return Response.status(Response.Status.OK).entity(lista).build();
     }
+    
     @PUT
     @Path("/editar")
     @Consumes(MediaType.APPLICATION_JSON)

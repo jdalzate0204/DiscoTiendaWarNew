@@ -1,11 +1,14 @@
 package org.netbeans.rest.application.config;
 
 import co.edu.unicundi.discotiendajar.service.IAdministradorService;
+import co.edu.unicundi.discotiendawar.exception.ExceptionWraper;
 import io.jsonwebtoken.*;
 import java.io.IOException;
 import javax.ejb.EJB;
 import javax.ws.rs.container.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.ext.Provider;
 import javax.xml.bind.DatatypeConverter;
 
@@ -19,6 +22,8 @@ public class Interceptor implements ContainerRequestFilter{
     
     @EJB
     private IAdministradorService service;
+    @Context 
+    private UriInfo uriInfo;
     
     @Override
     public void filter(ContainerRequestContext requestContext) throws IOException{
@@ -41,7 +46,7 @@ public class Interceptor implements ContainerRequestFilter{
 
         if (token == null) {
             requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED)
-                    .entity("TOKEN INVALIDO").build());
+                    .entity(this.wraperError("TOKEN INVALIDO")).build());
             return  ;
             
             
@@ -75,21 +80,28 @@ public class Interceptor implements ContainerRequestFilter{
                         //abortamos la peticion
                         //Enviar el objeto de error con codigo 401 y el dto  ExcepionWrraper
                         requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED)
-                                .entity("TOKEN NO PERMITIDO PARA ESTA OPERACION").build());
+                                .entity(this.wraperError("TOKEN NO PERMITIDO PARA ESTA OPERACION")).build());
                         return;   
                     }
                 }
             } catch (ExpiredJwtException ex) {
                 //Enviar el objeto de error con codigo 401 y el dto  ExcepionWrraper
                 requestContext.abortWith(Response.status(Response.Status.UNAUTHORIZED)
-                        .entity("TOKEN CADUCADO").build());
+                        .entity(this.wraperError("TOKEN CADUCADO")).build());
                 return;
             } catch (Exception ex ) {
                 //Enviar el objeto de error con codigo 500 y el dto  ExcepionWrraper
                 requestContext.abortWith(Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-                        .entity("ERROR AL DESCIFRAR EL TOKEN").build());
+                        .entity(this.wraperError("ERROR AL DESCIFRAR EL TOKEN")).build());
                 return;
             }  
         }
+    }
+    
+    public ExceptionWraper wraperError (String mensaje) {
+        return new ExceptionWraper(Response.Status.UNAUTHORIZED.getStatusCode(), 
+                                      Response.Status.UNAUTHORIZED.getReasonPhrase(), 
+                                      mensaje, 
+                                      uriInfo.getPath());
     }
 }
